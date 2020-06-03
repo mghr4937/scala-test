@@ -74,18 +74,12 @@ object ListTest extends App {
   println(listOfIntegers.toString)
   println(listOfStrings.toString)
 
-  println(listOfIntegers.map(new Function1[Int, Int] {
-    override def apply(element: Int): Int = element * 2
-  }))
+  println(listOfIntegers.map(elem => elem * 2))
 
-  println(listOfIntegers.filter(new Function1[Int, Boolean] {
-    override def apply(element: Int): Boolean = element % 2 == 0
-  }))
+  println(listOfIntegers.filter(elem => elem % 2 == 0))
 
   println((listOfIntegers ++ anotherListOfIntegers).toString)
-  println(listOfIntegers.flatMap(new Function1[Int, MyList[Int]] {
-    override def apply(element: Int): MyList[Int] = new Cons(element, new Cons(element + 1, Empty))
-  }).toString)
+  println(listOfIntegers.flatMap(elem => new Cons(elem, new Cons(elem + 1, Empty))).toString)
 
   //case
   val cloneListOfIntegers: MyList[Int] = new Cons(1, new Cons(2, new Cons(3, Empty)))
